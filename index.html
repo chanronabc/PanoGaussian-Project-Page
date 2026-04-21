@@ -12,7 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.ico">
+  <link rel="icon" type="image/png" href="./icon.png?v=20260421-1">
+  <link rel="shortcut icon" href="./icon.png?v=20260421-1">
+  <link rel="apple-touch-icon" href="./icon.png?v=20260421-1">
 </head>
 <body>
   <div class="page-background" aria-hidden="true">
@@ -85,8 +87,8 @@
             <div class="stage-orbit orbit-one"></div>
             <div class="stage-orbit orbit-two"></div>
             <div class="stage-beam"></div>
-            <video class="stage-video" autoplay muted loop playsinline preload="metadata" poster="static/images/output_images/banner_video_first_frame.png">
-              <source src="static/videos/banner_video.mp4" type="video/mp4">
+            <video class="stage-video" autoplay muted loop playsinline preload="metadata" poster="static/images/output_images/banner_video_first_frame.png?v=20260421-1">
+              <source src="static/videos/banner_video.mp4?v=20260421-1" type="video/mp4">
             </video>
           </div>
           <div class="chip-field">
@@ -497,7 +499,7 @@
         </div>
 
         <div class="video-toolbar reveal">
-          <button id="toggle-playback-btn" class="action-pill action-pill-dark" type="button">Play all renderings</button>
+          <button id="toggle-playback-btn" class="action-pill action-pill-dark" type="button">Play comparison</button>
         </div>
 
         <div class="video-grid">
@@ -523,41 +525,6 @@
             </div>
           </article>
 
-          <article class="video-card reveal">
-            <div class="video-label-row">
-              <div>
-                <h3>Ours</h3>
-                <p>Layered reconstruction with render-guided refinement.</p>
-              </div>
-            </div>
-            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
-              <source src="static/videos/ours_1.mp4" type="video/mp4">
-            </video>
-          </article>
-
-          <article class="video-card reveal reveal-delay">
-            <div class="video-label-row">
-              <div>
-                <h3>LayerPano3D</h3>
-                <p>Layered baseline rendered with the same trajectory.</p>
-              </div>
-            </div>
-            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
-              <source src="static/videos/layerpano3d_1.mp4" type="video/mp4">
-            </video>
-          </article>
-
-          <article class="video-card reveal">
-            <div class="video-label-row">
-              <div>
-                <h3>Scene4U</h3>
-                <p>Shared benchmark split and identical view path.</p>
-              </div>
-            </div>
-            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
-              <source src="static/videos/scene4u_1.mp4" type="video/mp4">
-            </video>
-          </article>
         </div>
       </div>
     </section>

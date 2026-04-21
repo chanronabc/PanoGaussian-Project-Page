@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!togglePlaybackButton) {
       return;
     }
-    togglePlaybackButton.textContent = areVideosPlaying ? "Pause all renderings" : "Play all renderings";
+    togglePlaybackButton.textContent = areVideosPlaying ? "Pause comparison" : "Play comparison";
   };
 
   if (togglePlaybackButton && syncVideos.length > 0) {
