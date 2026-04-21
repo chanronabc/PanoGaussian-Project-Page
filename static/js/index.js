@@ -1,142 +1,195 @@
-window.HELP_IMPROVE_VIDEOJS = false;
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".site-header");
+  const revealNodes = document.querySelectorAll(".reveal");
+  const togglePlaybackButton = document.getElementById("toggle-playback-btn");
+  const syncVideos = Array.from(document.querySelectorAll(".sync-video"));
+  const triptychVideo = document.getElementById("triptych-carousel-video");
+  const triptychSource = document.getElementById("triptych-carousel-source");
+  const triptychTitle = document.getElementById("triptych-carousel-title");
+  const triptychDescription = document.getElementById("triptych-carousel-description");
+  const triptychIndicator = document.getElementById("triptych-carousel-indicator");
+  const triptychPrevButton = document.getElementById("triptych-prev-btn");
+  const triptychNextButton = document.getElementById("triptych-next-btn");
 
-// More Works Dropdown Functionality
-function toggleMoreWorks() {
-    const dropdown = document.getElementById('moreWorksDropdown');
-    const button = document.querySelector('.more-works-btn');
-    
-    if (dropdown.classList.contains('show')) {
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    } else {
-        dropdown.classList.add('show');
-        button.classList.add('active');
+  const syncHeaderState = () => {
+    if (!header) {
+      return;
     }
-}
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const container = document.querySelector('.more-works-container');
-    const dropdown = document.getElementById('moreWorksDropdown');
-    const button = document.querySelector('.more-works-btn');
-    
-    if (container && !container.contains(event.target)) {
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    }
-});
+  syncHeaderState();
+  window.addEventListener("scroll", syncHeaderState, { passive: true });
 
-// Close dropdown on escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const dropdown = document.getElementById('moreWorksDropdown');
-        const button = document.querySelector('.more-works-btn');
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    }
-});
-
-// Copy BibTeX to clipboard
-function copyBibTeX() {
-    const bibtexElement = document.getElementById('bibtex-code');
-    const button = document.querySelector('.copy-bibtex-btn');
-    const copyText = button.querySelector('.copy-text');
-    
-    if (bibtexElement) {
-        navigator.clipboard.writeText(bibtexElement.textContent).then(function() {
-            // Success feedback
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
-            
-            setTimeout(function() {
-                button.classList.remove('copied');
-                copyText.textContent = 'Copy';
-            }, 2000);
-        }).catch(function(err) {
-            console.error('Failed to copy: ', err);
-            // Fallback for older browsers
-            const textArea = document.createElement('textarea');
-            textArea.value = bibtexElement.textContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
-            setTimeout(function() {
-                button.classList.remove('copied');
-                copyText.textContent = 'Copy';
-            }, 2000);
+  if (revealNodes.length > 0) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
         });
-    }
-}
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -30px 0px"
+      }
+    );
 
-// Scroll to top functionality
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    revealNodes.forEach((node) => revealObserver.observe(node));
+  }
+
+  const triptychPlaylist = [
+    {
+      title: "Scene 0",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene0.mp4",
+      poster: "static/images/output_images/comparison_quad_scene0_first_frame.png"
+    },
+    {
+      title: "Scene 2",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene2.mp4",
+      poster: "static/images/output_images/comparison_quad_scene2_first_frame.png"
+    },
+    {
+      title: "Scene 4",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene4.mp4",
+      poster: "static/images/output_images/comparison_quad_scene4_first_frame.png"
+    },
+    {
+      title: "Scene 5",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene5.mp4",
+      poster: "static/images/output_images/comparison_quad_scene5_first_frame.png"
+    },
+    {
+      title: "Scene 6",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene6.mp4",
+      poster: "static/images/output_images/comparison_quad_scene6_first_frame.png"
+    },
+    {
+      title: "Scene 7",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene7.mp4",
+      poster: "static/images/output_images/comparison_quad_scene7_first_frame.png"
+    },
+    {
+      title: "Scene 8",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene8.mp4",
+      poster: "static/images/output_images/comparison_quad_scene8_first_frame.png"
+    },
+    {
+      title: "Scene 9",
+      description: "Column order: LayerPano3D | Scene4U | DreamScene360 | Ours",
+      src: "static/videos/comparison_quad_scene9.mp4",
+      poster: "static/images/output_images/comparison_quad_scene9_first_frame.png"
+    }
+  ];
+
+  let triptychIndex = 0;
+
+  const updateTriptychIndicator = () => {
+    if (!triptychIndicator) {
+      return;
+    }
+    triptychIndicator.textContent = `${triptychIndex + 1} / ${triptychPlaylist.length}`;
+  };
+
+  const applyTriptychSlide = async (nextIndex) => {
+    if (!triptychVideo || !triptychSource || triptychPlaylist.length === 0) {
+      return;
+    }
+
+    const normalizedIndex = (nextIndex + triptychPlaylist.length) % triptychPlaylist.length;
+    const slide = triptychPlaylist[normalizedIndex];
+    const wasPlaying = !triptychVideo.paused;
+
+    triptychIndex = normalizedIndex;
+
+    if (triptychTitle) {
+      triptychTitle.textContent = slide.title;
+    }
+    if (triptychDescription) {
+      triptychDescription.textContent = slide.description;
+    }
+    updateTriptychIndicator();
+
+    triptychVideo.pause();
+    triptychVideo.setAttribute("poster", slide.poster);
+    triptychSource.src = slide.src;
+    triptychVideo.load();
+
+    if (!wasPlaying) {
+      return;
+    }
+
+    try {
+      await triptychVideo.play();
+    } catch (error) {
+      console.error("Failed to autoplay switched triptych slide", error);
+    }
+  };
+
+  if (triptychVideo && triptychSource && triptychPrevButton && triptychNextButton) {
+    updateTriptychIndicator();
+
+    triptychPrevButton.addEventListener("click", () => {
+      applyTriptychSlide(triptychIndex - 1);
     });
-}
 
-// Show/hide scroll to top button
-window.addEventListener('scroll', function() {
-    const scrollButton = document.querySelector('.scroll-to-top');
-    if (window.pageYOffset > 300) {
-        scrollButton.classList.add('visible');
-    } else {
-        scrollButton.classList.remove('visible');
+    triptychNextButton.addEventListener("click", () => {
+      applyTriptychSlide(triptychIndex + 1);
+    });
+  }
+
+  let areVideosPlaying = false;
+
+  const updatePlaybackLabel = () => {
+    if (!togglePlaybackButton) {
+      return;
     }
+    togglePlaybackButton.textContent = areVideosPlaying ? "Pause all renderings" : "Play all renderings";
+  };
+
+  if (togglePlaybackButton && syncVideos.length > 0) {
+    updatePlaybackLabel();
+
+    togglePlaybackButton.addEventListener("click", async () => {
+      if (areVideosPlaying) {
+        syncVideos.forEach((video) => video.pause());
+        areVideosPlaying = false;
+        updatePlaybackLabel();
+        return;
+      }
+
+      const anchorTime = syncVideos[0].currentTime;
+      const results = await Promise.allSettled(
+        syncVideos.map((video) => {
+          video.currentTime = anchorTime;
+          return video.play();
+        })
+      );
+
+      areVideosPlaying = results.some((result) => result.status === "fulfilled");
+      updatePlaybackLabel();
+    });
+
+    syncVideos.forEach((video) => {
+      video.addEventListener("play", () => {
+        areVideosPlaying = syncVideos.some((item) => !item.paused);
+        updatePlaybackLabel();
+      });
+
+      video.addEventListener("pause", () => {
+        areVideosPlaying = syncVideos.some((item) => !item.paused);
+        updatePlaybackLabel();
+      });
+    });
+  }
 });
-
-// Video carousel autoplay when in view
-function setupVideoCarouselAutoplay() {
-    const carouselVideos = document.querySelectorAll('.results-carousel video');
-    
-    if (carouselVideos.length === 0) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                // Video is in view, play it
-                video.play().catch(e => {
-                    // Autoplay failed, probably due to browser policy
-                    console.log('Autoplay prevented:', e);
-                });
-            } else {
-                // Video is out of view, pause it
-                video.pause();
-            }
-        });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the video is visible
-    });
-    
-    carouselVideos.forEach(video => {
-        observer.observe(video);
-    });
-}
-
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
-
-    var options = {
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		loop: true,
-		infinite: true,
-		autoplay: true,
-		autoplaySpeed: 5000,
-    }
-
-	// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-	
-    bulmaSlider.attach();
-    
-    // Setup video autoplay for carousel
-    setupVideoCarouselAutoplay();
-
-})

@@ -3,518 +3,567 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta name="description" content="PanoGaussian reconstructs a coherent layered 3D Gaussian scene from a single equirectangular panorama using depth-conditioned segmentation, layer-wise lifting, and render-guided refinement.">
+  <meta name="keywords" content="single panorama, layered reconstruction, 3D Gaussian splatting, depth-conditioned segmentation, Upright360, TVCG">
+  <meta name="theme-color" content="#0d5a78">
+  <title>PanoGaussian: Depth-Aligned Layered 3D Gaussian Reconstruction from a Single Panorama</title>
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
 </head>
 <body>
-
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
+  <div class="page-background" aria-hidden="true">
+    <div class="background-glow glow-left"></div>
+    <div class="background-glow glow-right"></div>
+    <div class="background-grid"></div>
+    <div class="background-rings"></div>
   </div>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+  <header class="site-header">
+    <div class="site-shell">
+      <a class="site-brand" href="#top">PanoGaussian</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#videos">Videos</a>
+      </nav>
+    </div>
+  </header>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+  <main id="top">
+    <section class="hero-panel">
+      <div class="site-shell hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-meta-row">
+            <span class="meta-chip">Anonymous TVCG Submission</span>
+            <span class="meta-chip meta-chip-quiet">Single-Panorama Layered Reconstruction</span>
+          </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+          <h1 class="hero-title">
+            <span>PanoGaussian:</span>
+            <span>Depth-Aligned</span>
+            <span>Layered 3D</span>
+            <span>Gaussian Reconstruction</span>
+            <span>from a Single Panorama</span>
+          </h1>
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
+          <p class="hero-summary">
+            PanoGaussian studies a scoped but practical setting: reconstructing a coherent layered scene from one
+            equirectangular panorama for nearby viewpoint browsing around the capture center, instead of claiming
+            unrestricted single-view 6DoF generation.
+          </p>
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
+          <div class="hero-actions">
+            <a class="action-pill action-pill-primary" href="static/pdfs/main_en.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
+            <a class="action-pill" href="#results">Quantitative Results</a>
+            <a class="action-pill" href="#videos">Camera-Path Videos</a>
+          </div>
 
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+          <div class="metric-strip">
+            <article class="metric-card">
+              <span class="metric-value">4</span>
+              <span class="metric-label">Ordered layers: near, mid, far, sky</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-value">+15.6%</span>
+              <span class="metric-label">Target-view PSNR over the mean of LayerPano3D and Scene4U</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-value">&gt;95%</span>
+              <span class="metric-label">Pitch-Var reduction under the shared evaluation protocol</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal reveal-delay">
+          <div class="stage-label">Long camera-path rendering</div>
+          <div class="stage-frame">
+            <div class="stage-orbit orbit-one"></div>
+            <div class="stage-orbit orbit-two"></div>
+            <div class="stage-beam"></div>
+            <video class="stage-video" autoplay muted loop playsinline preload="metadata" poster="static/images/output_images/banner_video_first_frame.png">
+              <source src="static/videos/banner_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="chip-field">
+            <span>Depth-conditioned segmentation</span>
+            <span>Layer-wise 3DGS</span>
+            <span>Render-guided refinement</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="overview">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <span class="section-tag">Scene Scope</span>
+          <h2>Built for coherent local browsing rather than generic single-image 3D.</h2>
+        </div>
+
+        <div class="overview-grid">
+          <article class="content-card abstract-card reveal">
+            <p>
+              Recovering a coherent layered 3D scene representation from a single equirectangular panorama is under-constrained:
+              depth, occlusion, and unseen regions must all be inferred from one image, while ERP distortion and longitude seams
+              complicate both learning and rendering. PanoGaussian addresses this with a layered 3D Gaussian pipeline that treats
+              the task as reconstruction under nearby novel-view rendering, not unconstrained single-image 3D generation.
+            </p>
+            <p>
+              A calibrated panoramic depth prior is injected into a DINOv3 backbone through FiLM modulation to predict four
+              ordered layers. Each layer is then completed and lifted into a separate Gaussian field. During refinement, earlier
+              layers constrain later ones through masked photometric reconstruction, a lightweight depth-order term, and
+              out-of-mask color preservation. Longitude wrapping and cosine latitude weighting are applied consistently to
+              mitigate seam and polar artifacts.
+            </p>
+          </article>
+
+          <article class="content-card scope-card reveal reveal-delay">
+            <div class="scope-row">
+              <span>Input</span>
+              <strong>One ERP panorama with tangent-view depth calibration</strong>
             </div>
+            <div class="scope-row">
+              <span>Output</span>
+              <strong>Four ordered Gaussian layers with fixed near-to-far compositing</strong>
+            </div>
+            <div class="scope-row">
+              <span>Target</span>
+              <strong>Nearby novel-view browsing around the capture center</strong>
+            </div>
+            <div class="scope-row">
+              <span>Protocol</span>
+              <strong>Shared 12-scene Upright360 evaluation split, same ERP inputs, same horizontal trajectory</strong>
+            </div>
+          </article>
+
+          <article class="content-card contribution-card reveal">
+            <div class="card-kicker">Scoped Contribution Areas</div>
+            <ol class="contribution-list">
+              <li>
+                <strong>Depth-conditioned layering.</strong>
+                FiLM-modulated inverse-depth cues guide a spherical-adapted DINOv3 backbone so layer boundaries align better with
+                depth discontinuities than a semantic-only split.
+              </li>
+              <li>
+                <strong>Cross-layer refinement.</strong>
+                Later Gaussian layers are refined against earlier rendered layers using masked photometric reconstruction, depth
+                ordering, and out-of-mask color preservation.
+              </li>
+            </ol>
+            <p class="contribution-note">
+              Longitude wrapping and cosine latitude weighting are also used throughout the pipeline as practical ERP-aware
+              stabilizers. We treat them as implementation choices for seam continuity and polar bias reduction, not as
+              standalone methodological novelties.
+            </p>
+          </article>
+
+          <article class="content-card protocol-card reveal reveal-delay">
+            <div class="card-kicker">Evaluation Readout</div>
+            <p>
+              Metrics combine no-reference naturalness, held-out target-view fidelity, and geometric stability. This keeps the page
+              anchored to reconstruction behavior under the shared rendered trajectory instead of ranking methods only by one
+              photogenic frame.
+            </p>
+            <div class="protocol-badges">
+              <span>NIQE / BRISQUE</span>
+              <span>PSNR / SSIM / LPIPS</span>
+              <span>Pitch-Mean / Pitch-Var</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block section-tinted" id="teaser">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <span class="section-tag">Teaser Figure</span>
+          <h2>One panorama, one local camera path, and a much cleaner layered reconstruction.</h2>
+        </div>
+
+        <article class="figure-panel figure-panel-stack reveal">
+          <figure class="figure-frame">
+            <img src="static/images/output_images/Teaser_01.png" alt="Teaser figure comparing previous methods and our layered reconstruction results." class="feature-image">
+            <figcaption class="figure-caption">
+              Teaser comparison under the same local browsing setup: ours reduces seams, ghosting, and blur.
+            </figcaption>
+          </figure>
+          <div class="figure-note-row">
+            <article class="figure-note">
+              <h3>Scoped target</h3>
+              <p>Single panorama input, optimized for nearby camera motion around the capture center.</p>
+            </article>
+            <article class="figure-note">
+              <h3>Direct comparison</h3>
+              <p>Same local path and same benchmark scenes are used across methods for a fair side-by-side readout.</p>
+            </article>
+            <article class="figure-note">
+              <h3>Visual quality</h3>
+              <p>Sharper thin structures with fewer floaters and seam-adjacent artifacts.</p>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" id="method">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <span class="section-tag">Method Deck</span>
+          <h2>Pipeline overview, mask prediction, and near-to-far refinement.</h2>
+        </div>
+
+        <article class="figure-panel figure-panel-wide figure-panel-stack reveal">
+          <figure class="figure-frame figure-frame-wide">
+            <img src="static/images/output_images/overview_01.png" alt="Pipeline overview from input panorama and depth prior to layered 3D Gaussian reconstruction and a browsable scene." class="feature-image">
+            <figcaption class="figure-caption">
+              Pipeline from ERP panorama and depth prior to ordered layers, layer-wise 3DGS, and final scene compositing.
+            </figcaption>
+          </figure>
+          <div class="figure-note-row">
+            <article class="figure-note">
+              <h3>Depth-guided masks</h3>
+              <p>A calibrated panoramic depth prior helps predict ordered near, mid, far, and sky masks.</p>
+            </article>
+            <article class="figure-note">
+              <h3>Layer-wise lifting</h3>
+              <p>Each ordered layer is reconstructed as an independent Gaussian field before composition.</p>
+            </article>
+            <article class="figure-note">
+              <h3>Near-to-far refinement</h3>
+              <p>Later layers are refined with rendered constraints from earlier layers to stabilize composition.</p>
+            </article>
+          </div>
+        </article>
+
+        <div class="detail-grid">
+          <article class="detail-card reveal">
+            <div class="detail-index">01</div>
+            <img src="static/images/output_images/dinov3_01.png" alt="Depth-conditioned DINOv3 segmentation module predicting ordered layer masks." class="detail-image">
+            <h3>Depth-conditioned segmentation</h3>
+            <p>
+              A FiLM-conditioned DINOv3 backbone injects inverse-depth cues into the transformer so the predicted near, mid,
+              far, and sky probabilities align with geometry instead of relying on semantic grouping alone.
+            </p>
+          </article>
+
+          <article class="detail-card reveal reveal-delay">
+            <div class="detail-index">02</div>
+            <img src="static/images/output_images/Refine_01.png" alt="Sequential render-guided refinement across near, mid, far, and sky layers." class="detail-image">
+            <h3>Render-guided layer refinement</h3>
+            <p>
+              Layers are refined from near to far, with earlier rendered layers kept fixed to constrain visibility, preserve
+              already-solved content, and reduce cross-layer leakage in the final composition.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="results">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <span class="section-tag">Results</span>
+          <h2>Quantitative and qualitative comparisons under the same Upright360 benchmark and camera path.</h2>
+        </div>
+
+        <div class="results-layout">
+          <article class="content-card metrics-card reveal">
+            <div class="card-kicker">Shared 12-Scene Protocol Table</div>
+            <div class="table-wrap">
+              <table class="metric-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Method</th>
+                    <th colspan="2">Naturalness</th>
+                    <th colspan="3">Target-view fidelity</th>
+                    <th colspan="2">Stability</th>
+                  </tr>
+                  <tr>
+                    <th>NIQE</th>
+                    <th>BRISQUE</th>
+                    <th>PSNR</th>
+                    <th>SSIM</th>
+                    <th>LPIPS</th>
+                    <th>Pitch-Mean</th>
+                    <th>Pitch-Var</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LayerPano3D</td>
+                    <td>6.324</td>
+                    <td>61.931</td>
+                    <td>17.405</td>
+                    <td>0.788</td>
+                    <td>0.298</td>
+                    <td>2.159</td>
+                    <td>1.733</td>
+                  </tr>
+                  <tr>
+                    <td>Scene4U</td>
+                    <td>5.041</td>
+                    <td>52.259</td>
+                    <td>17.484</td>
+                    <td>0.793</td>
+                    <td>0.267</td>
+                    <td>2.855</td>
+                    <td>2.311</td>
+                  </tr>
+                  <tr>
+                    <td>DreamScene360</td>
+                    <td>7.352</td>
+                    <td>71.148</td>
+                    <td>10.187</td>
+                    <td>0.691</td>
+                    <td>0.414</td>
+                    <td>3.442</td>
+                    <td>2.374</td>
+                  </tr>
+                  <tr class="row-ours">
+                    <td>Ours</td>
+                    <td>4.961</td>
+                    <td>46.096</td>
+                    <td>20.196</td>
+                    <td>0.863</td>
+                    <td>0.160</td>
+                    <td>0.684</td>
+                    <td>0.102</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">
+              Values are means over the shared 12-scene evaluation split. Lower is better for NIQE, BRISQUE, LPIPS, Pitch-Mean,
+              and Pitch-Var. Higher is better for PSNR and SSIM.
+            </p>
+          </article>
+
+          <article class="content-card callout-card reveal reveal-delay">
+            <div class="callout-block">
+              <span class="callout-value">17.445 -&gt; 20.196</span>
+              <p>Relative to the mean of LayerPano3D and Scene4U, target-view PSNR improves by about 15.6%.</p>
+            </div>
+            <div class="callout-block">
+              <span class="callout-value">2.022 -&gt; 0.102</span>
+              <p>Pitch-Var drops by more than 95%, indicating much more stable vertical geometry across rendered views.</p>
+            </div>
+            <div class="callout-block">
+              <span class="callout-value">0.267 -&gt; 0.160</span>
+              <p>Compared with Scene4U, LPIPS improves clearly while PSNR and SSIM both increase.</p>
+            </div>
+          </article>
+        </div>
+
+        <article class="figure-panel figure-panel-wide reveal">
+          <div class="figure-copy">
+            <div class="card-kicker">Qualitative comparison</div>
+            <h3>Multi-scene qualitative comparison under the shared local trajectory.</h3>
+            <p>
+              The comparison directly contrasts GT, LayerPano3D, Scene4U, DreamScene360, and our method on the same rendered
+              views, exposing differences in structure retention, distant content, wall continuity, and artifact suppression.
+            </p>
+            <ul class="figure-points">
+              <li>Sharper and more stable thin structures.</li>
+              <li>Cleaner distant foliage and repeated textures.</li>
+              <li>Fewer over-smoothed or floating regions than the compared methods.</li>
+            </ul>
+          </div>
+
+          <figure class="figure-frame figure-frame-wide">
+            <img src="static/images/output_images/result_01.png" alt="Multi-scene qualitative comparison among GT, LayerPano3D, Scene4U, DreamScene360, and our method." class="feature-image">
+            <figcaption class="figure-caption">
+              Multi-scene qualitative comparison. Across seam-sensitive facades, indoor boundaries, and thin outdoor details,
+              PanoGaussian stays closer to the held-out target view while avoiding many artifacts visible in competing methods.
+            </figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block section-tinted" id="analysis">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <span class="section-tag">Diagnostics and Limits</span>
+          <h2>Cross-view behavior, ablation evidence, and the exact scope of the claimed setting.</h2>
+        </div>
+
+        <div class="analysis-layout">
+          <article class="content-card ablation-card reveal">
+            <div class="card-kicker">Cross-view diagnostics</div>
+            <div class="diagnostics-grid">
+              <figure class="diagnostics-tile">
+                <img src="static/images/output_images/ssim_vs_d_01.png" alt="SSIM versus step size across methods." class="analysis-image diagnostics-image">
+                <figcaption>SSIM</figcaption>
+              </figure>
+              <figure class="diagnostics-tile">
+                <img src="static/images/output_images/edge_l1_vs_d_01.png" alt="Edge-L1 versus step size across methods." class="analysis-image diagnostics-image">
+                <figcaption>Edge-L1</figcaption>
+              </figure>
+              <figure class="diagnostics-tile">
+                <img src="static/images/output_images/occ_acc_vs_d_01.png" alt="Occlusion accuracy versus step size across methods." class="analysis-image diagnostics-image">
+                <figcaption>Occlusion Accuracy</figcaption>
+              </figure>
+              <figure class="diagnostics-tile">
+                <img src="static/images/output_images/flicker_vs_d_01.png" alt="Flicker versus step size across methods." class="analysis-image diagnostics-image">
+                <figcaption>Flicker</figcaption>
+              </figure>
+            </div>
+            <p class="diagnostics-note">
+              As the angular interval increases, our method degrades more gracefully across SSIM, Edge-L1, occlusion accuracy,
+              and flicker than the compared reconstructions.
+            </p>
+          </article>
+
+          <article class="content-card ablation-table-card reveal reveal-delay">
+            <div class="card-kicker">Compact ablation readout</div>
+            <div class="table-wrap table-wrap-compact">
+              <table class="metric-table metric-table-compact">
+                <thead>
+                  <tr>
+                    <th>Variant</th>
+                    <th>PSNR</th>
+                    <th>SSIM</th>
+                    <th>Pitch-Var</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="row-ours">
+                    <td>Ours</td>
+                    <td>20.196</td>
+                    <td>0.863</td>
+                    <td>0.102</td>
+                  </tr>
+                  <tr>
+                    <td>w/o RG</td>
+                    <td>18.366</td>
+                    <td>0.805</td>
+                    <td>0.895</td>
+                  </tr>
+                  <tr>
+                    <td>Sem-only</td>
+                    <td>13.045</td>
+                    <td>0.769</td>
+                    <td>1.930</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <div class="analysis-note-row reveal reveal-delay">
+            <article class="analysis-note">
+              <h3>Semantic-only layering is not enough</h3>
+              <p>
+                Removing depth conditioning drops PSNR from 20.196 to 13.045 and raises Pitch-Var from 0.102 to 1.930,
+                indicating that geometric depth cues are central to the layer partition.
+              </p>
+            </article>
+            <article class="analysis-note">
+              <h3>Render guidance stabilizes composition</h3>
+              <p>
+                Without render-guided refinement, independently optimized layers accumulate cross-layer errors, reducing PSNR
+                to 18.366 and increasing Pitch-Var to 0.895.
+              </p>
+            </article>
+            <article class="analysis-note analysis-note-limits">
+              <h3>Current limits remain explicit</h3>
+              <p>
+                The method uses a fixed four-layer decomposition, one-way refinement, and still depends on depth and completion
+                priors. The target is nearby viewpoint browsing, not unrestricted large-motion 6DoF navigation.
+              </p>
+              <div class="limit-tags">
+                <span>Reflective surfaces</span>
+                <span>Textureless walls</span>
+                <span>Thin structures</span>
+                <span>Severe occlusion</span>
+              </div>
+            </article>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <section class="section-block section-dark" id="videos">
+      <div class="site-shell">
+        <div class="section-heading section-heading-dark reveal">
+          <span class="section-tag section-tag-dark">Renderings</span>
+          <h2>One trajectory, multiple reconstructions, very different behavior.</h2>
+        </div>
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+        <div class="video-toolbar reveal">
+          <button id="toggle-playback-btn" class="action-pill action-pill-dark" type="button">Play all renderings</button>
+        </div>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+        <div class="video-grid">
+          <article class="video-card video-card-wide reveal">
+            <div class="video-label-row">
+              <div>
+                <h3 id="triptych-carousel-title">Scene 0</h3>
+              </div>
+              <span id="triptych-carousel-indicator" class="triptych-indicator" aria-live="polite">1 / 8</span>
+            </div>
+            <div class="triptych-stage">
+              <button id="triptych-prev-btn" class="triptych-side-btn triptych-side-btn-left" type="button" aria-label="Previous comparison video">&#8592;</button>
+              <div class="triptych-column-head" aria-hidden="true">
+                <span>LayerPano3D</span>
+                <span>Scene4U</span>
+                <span>DreamScene360</span>
+                <span>Ours</span>
+              </div>
+              <video id="triptych-carousel-video" class="comparison-video triptych-video sync-video" controls muted loop playsinline preload="metadata" poster="static/images/output_images/comparison_quad_scene0_first_frame.png">
+                <source id="triptych-carousel-source" src="static/videos/comparison_quad_scene0.mp4" type="video/mp4">
+              </video>
+              <button id="triptych-next-btn" class="triptych-side-btn triptych-side-btn-right" type="button" aria-label="Next comparison video">&#8594;</button>
+            </div>
+          </article>
+
+          <article class="video-card reveal">
+            <div class="video-label-row">
+              <div>
+                <h3>Ours</h3>
+                <p>Layered reconstruction with render-guided refinement.</p>
+              </div>
+            </div>
+            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
+              <source src="static/videos/ours_1.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <article class="video-card reveal reveal-delay">
+            <div class="video-label-row">
+              <div>
+                <h3>LayerPano3D</h3>
+                <p>Layered baseline rendered with the same trajectory.</p>
+              </div>
+            </div>
+            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
+              <source src="static/videos/layerpano3d_1.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <article class="video-card reveal">
+            <div class="video-label-row">
+              <div>
+                <h3>Scene4U</h3>
+                <p>Shared benchmark split and identical view path.</p>
+              </div>
+            </div>
+            <video class="comparison-video sync-video" controls muted loop playsinline preload="metadata">
+              <source src="static/videos/scene4u_1.mp4" type="video/mp4">
+            </video>
+          </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
+  </main>
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+  <script src="./static/js/index.js"></script>
+</body>
+</html>
